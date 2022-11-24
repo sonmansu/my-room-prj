@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ModalDialog from "react-bootstrap/ModalDialog";
@@ -6,11 +6,43 @@ import "../styles/SelectModal.scss";
 import SelectModalItem from "./SelectModalItem";
 
 const itemObj = {
-    bed: ["bed_01_select", "bed_02_select"],
+    bed: ["bed_01", "bed_02", "bed_02", "bed_02"],
 };
 
-export default function SelectModal({ item, setSelectModalOn }) {
+export default function SelectModal({
+    item,
+    setSelectModalOn,
+    curBedImg,
+    setBedImg,
+}) {
     const fileNames = itemObj[item];
+    const [save, setSave] = useState(false);
+    let saveRef = useRef(false);
+
+    const onClickItem = (e) => {
+        setBedImg(e.target.value);
+    };
+
+    const onConfirm = () => {
+        setSave(true);
+        saveRef.current = true;
+        console.log("onConfirm: save:", save);
+        console.log("onConfirm: saveRef:", saveRef);
+        setSelectModalOn(false);
+    };
+
+    useEffect(() => {
+        console.log("useEffect()!!========================");
+        console.log("save :>> ", save);
+        console.log("saveRef :>> ", saveRef);
+
+        return () => {
+            console.log("return()!!========================");
+            console.log("save :>> ", save);
+            console.log("saveRef :>> ", saveRef);
+            if (!save) setBedImg(curBedImg);
+        };
+    }, [save, saveRef]);
 
     return (
         <>
@@ -26,50 +58,30 @@ export default function SelectModal({ item, setSelectModalOn }) {
                     <Modal.Title id="example-custom-modal-styling-title">
                         Custom Modal Styling
                     </Modal.Title>
-                    <div className="confirmBtn"></div>
+                    <div className="confirmBtn" onClick={onConfirm}>
+                        확인
+                    </div>
                 </Modal.Header>
                 <Modal.Body>
                     {/* <form> */}
-                    <fieldset>
-                        <legend>성별</legend>
-                        <label>
-                            남성
-                            <input
-                                type="radio"
-                                name="gender"
-                                value="male"
-                                checked
-                            />
-                        </label>
-                        <label>
-                            여성
-                            <input type="radio" name="gender" value="female" />
-                        </label>
-                    </fieldset>
-                    {/* </form> */}
-                    {/* <form> */}
-                    <fieldset>
-                        {fileNames.map((fileName) => (
-                            <label>
+                    <fieldset className="modalItemsWrap">
+                        {fileNames.map((fileName, idx) => (
+                            <label key={idx}>
                                 <input
                                     type="radio"
                                     name={item}
                                     value={fileName}
-                                    id={fileName}
+                                    onClick={(e) => onClickItem(e)}
                                 />
-                                <SelectModalItem
-                                    for={fileName}
-                                    item={fileName}
-                                />
+                                <div className="modalItem">
+                                    <SelectModalItem
+                                        item={fileName + "_select"}
+                                    />
+                                </div>
                             </label>
                         ))}
                     </fieldset>
                     {/* </form> */}
-                    <div className="itemWrap">
-                        {fileNames.map((item) => (
-                            <SelectModalItem item={item} />
-                        ))}
-                    </div>
                 </Modal.Body>
             </Modal>
         </>
