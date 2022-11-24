@@ -13,16 +13,16 @@ $default-size: 360px;
 }
 
 .imgWrap {
-  background-color: yellow;
-  max-width: 700px;
-  max-height: 700px;
-  width: 100vmin;
-  height: 100vmin;
-  // width: $default-size;
-  // height: $default-size;
-  margin: 0 50px;
-  display: flex;
-  position: relative;
+    background-color: yellow;
+    max-width: 350px;
+    max-height: 350px;
+    width: 100vmin;
+    height: 100vmin;
+    // width: $default-size;
+    // height: $default-size;
+    margin: 0 50px;
+    display: flex;
+    position: relative;
 
   .roomBgImg {
     border: 5px solid blue;
