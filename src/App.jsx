@@ -1,12 +1,15 @@
 import "./App.scss";
 import ImageMap from "image-map";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import bed_default from "./assets/img/bed_default.png";
 import SelectModal from "./components/SelectModal";
 
 function App() {
     const [isSelectModalOn, setSelectModalOn] = useState(false);
     const [selectedItem, setSelectedItem] = useState("");
+    const [bedImg, setBedImg] = useState("bed_default");
+    let curBedImg = useRef(bedImg);
+
     useEffect(() => {
         ImageMap("img[usemap]");
     }, []);
@@ -18,6 +21,7 @@ function App() {
 
         if (isSelectModalOn) setSelectModalOn(false);
         else {
+            curBedImg.current = bedImg;
             setSelectModalOn(true);
             setSelectedItem(item);
         }
@@ -31,7 +35,11 @@ function App() {
                     <div className="roomBgImg" />
 
                     {/* <div className="bedDefaultImg" useMap="#image-map" /> */}
-                    <img src={bed_default} usemap="#image-map" />
+                    <img
+                        src={require(`./assets/img/${bedImg}.png`)}
+                        usemap="#image-map"
+                        alt="가구"
+                    />
                     <map name="image-map">
                         <area
                             // onClick={(e) => {
@@ -50,8 +58,10 @@ function App() {
                 </div>
                 {isSelectModalOn && (
                     <SelectModal
-                        item={selectedItem}
+                        item={selectedItem} //'bed'
                         setSelectModalOn={setSelectModalOn}
+                        curBedImg={curBedImg.current}
+                        setBedImg={setBedImg}
                     />
                 )}
                 {/* <SelectModal /> */}
