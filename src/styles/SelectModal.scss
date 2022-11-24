@@ -1,0 +1,22 @@
+.modal {
+    height: 40vh;
+    // height: 300px;
+    // background-color: yellow;
+}
+#modal {
+    // height: 40vh;
+    height: 100px;
+    background-color: yellow;
+}
+
+.itemWrap {
+    display: flex;
+    gap: 10px;
+    grid-column: 2px;
+}
+
+.confirmBtn {
+    width: 20px;
+    height: 20px;
+    background-color: green;
+}
