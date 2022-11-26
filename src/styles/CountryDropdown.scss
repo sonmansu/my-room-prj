@@ -1,0 +1,17 @@
+.dropdownWrap {
+  display: flex;
+  align-items: center;
+}
+.countrySelect {
+  width: 10rem;
+  height: 3rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.icon {
+  width: 5rem;
+
+  img {
+    width: 100%;
+  }
+}
