@@ -22,3 +22,10 @@ button {
     appearance: none; */
     border: none;
 }
+
+select {
+  -o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; /* 기본 화살표 없애기 */
+}
