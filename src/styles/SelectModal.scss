@@ -1,12 +1,30 @@
-.modal {
-    height: 40vh;
-    // height: 300px;
-    // background-color: yellow;
+// @import "~bootstrap/scss/bootstrap";
+
+#modalWrap {
+  //   position: fixed;
+  //   bottom: 0;
 }
-#modal {
-    // height: 40vh;
-    height: 100px;
-    background-color: yellow;
+.modalWrap {
+  //   position: fixed;
+  //   bottom: 0;
+  position: relative;
+}
+.backdrop {
+  position: relative;
+  height: 100vh;
+}
+.myModalDialog {
+  //   margin-top: auto;
+  position: absolute;
+  top: calc(100vh - 20rem - 2rem);
+  //   bottom: 0px; //작동안됨
+}
+.myModalContent {
+  height: 20rem;
+}
+#myModalId .MyModalBackdrop {
+  //   background-color: rgba(0, 0, 0, 0.2);
+  opacity: 0;
 }
 
 .confirmBtn {
@@ -16,10 +34,18 @@
 }
 
 .modalItemsWrap {
-    display: flex;
-    column-gap: 10px;
-    overflow-x: scroll;
+  display: flex;
+  column-gap: 1rem;
+  overflow-x: scroll;
+  padding-bottom: 0.5rem;
 }
+
+// .modalItemsWrap {
+//   -ms-overflow-style: none;
+// }
+// .modalItemsWrap::-webkit-scrollbar {
+//   display: none;
+// }
 
 /* HIDE RADIO */
 [type="radio"] {

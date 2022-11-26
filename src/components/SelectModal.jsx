@@ -34,46 +34,45 @@ export default function SelectModal({
         };
     }, [saveRef]);
 
-    return (
-        <>
-            <Modal
-                show={true}
-                onHide={() => setSelectModalOn(false)}
-                dialogClassName="modal-90w"
-                aria-labelledby="example-custom-modal-styling-title"
-                className="modal"
-                id="modal"
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title id="example-custom-modal-styling-title">
-                        Custom Modal Styling
-                    </Modal.Title>
-                    <div className="confirmBtn" onClick={onConfirm}>
-                        확인
-                    </div>
-                </Modal.Header>
-                <Modal.Body>
-                    {/* <form> */}
-                    <fieldset className="modalItemsWrap">
-                        {fileNames.map((fileName, idx) => (
-                            <label key={idx}>
-                                <input
-                                    type="radio"
-                                    name={item}
-                                    value={fileName}
-                                    onClick={(e) => onClickItem(e)}
-                                />
-                                <div className="modalItem">
-                                    <SelectModalItem
-                                        item={fileName + "_select"}
-                                    />
-                                </div>
-                            </label>
-                        ))}
-                    </fieldset>
-                    {/* </form> */}
-                </Modal.Body>
-            </Modal>
-        </>
-    );
+  return (
+    <div id="modalWrap" className="modalWrap">
+      <Modal
+        show={true}
+        onHide={() => setSelectModalOn(false)}
+        dialogClassName="modal-90w myModalDialog"
+        contentClassName="myModalContent"
+        backdropClassName="MyModalBackdrop"
+        aria-labelledby="example-custom-modal-styling-title"
+        id="myModalId"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-custom-modal-styling-title">
+            Custom Modal Styling
+          </Modal.Title>
+          <div className="confirmBtn" onClick={onConfirm}>
+            확인
+          </div>
+        </Modal.Header>
+        <Modal.Body>
+          {/* <form> */}
+          <fieldset className="modalItemsWrap">
+            {fileNames.map((fileName, idx) => (
+              <label key={idx}>
+                <input
+                  type="radio"
+                  name={item}
+                  value={fileName}
+                  onClick={(e) => onClickItem(e)}
+                />
+                <div className="modalItem">
+                  <SelectModalItem item={fileName + "_select"} />
+                </div>
+              </label>
+            ))}
+          </fieldset>
+          {/* </form> */}
+        </Modal.Body>
+      </Modal>
+    </div>
+  );
 }
