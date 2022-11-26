@@ -21,22 +21,26 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
-      <p>닉네임을 입력하세요</p>
+    <div className="loginPageWrap">
+      <p className="label">닉네임을 입력하세요.</p>
       <input
+        className="input"
         type="text"
         placeholder="최대 8글자"
         value={nickname}
         onChange={onChangeNickname}
       />
-      <p>비밀번호를 입력하세요</p>
+      <p className="label">비밀번호를 입력하세요.</p>
       <input
+        className="input"
         type="text"
         placeholder="최대 8글자"
         value={pw}
         onChange={onChangePw}
       />
-      <button onClick={onClickNext}>다음</button>
+      <button className="nextBtn" onClick={onClickNext}>
+        다음
+      </button>
     </div>
   );
 }
