@@ -16,8 +16,10 @@ export default function Furniture({
     console.log("useEffect!");
     // console.log("db :>> ", db);(
     // console.log("db[nickname][kind]", db[nickname][kind]);
-    if (!localStorage.getItem("db"))
-      setImg(JSON.parse(localStorage.getItem("db"))[nickname][kind]);
+    if (!localStorage.getItem("db")) {
+      return;
+    }
+    setImg(JSON.parse(localStorage.getItem("db"))[nickname][kind]);
   }, [localStorage.getItem("db")]);
 
   //   const onClickItem = (e) => {

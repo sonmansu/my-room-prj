@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchWeater } from "../utils/getWeather";
 
 export default function Window() {
@@ -8,12 +9,21 @@ export default function Window() {
   };
   const nickname = localStorage.getItem("nickname");
   const db = JSON.parse(localStorage.getItem("db"));
-  console.log('db[nickname]["country"]', db[nickname]["country"]);
-  const [img, setImg] = useState(db[nickname]["country"]);
-  const [country, setCountry] = useState(db[nickname]["country"]);
+  //   console.log('db[nickname]["country"]', db[nickname]["country"]);
+  const [img, setImg] = useState(
+    // db[nickname]["country"]
+    "Seoul"
+  );
+  const [country, setCountry] = useState(
+    // db[nickname]["country"],
+    "Seoul"
+  );
   const [fileName, setFileName] = useState("day");
 
   useEffect(() => {
+    if (!db) {
+      return;
+    }
     console.log("window useEffect ", db[nickname]["country"]);
     let country = db[nickname]["country"];
     setCountry(db[nickname]["country"]);
@@ -31,7 +41,7 @@ export default function Window() {
       console.log("fileName :>> ", fileName);
       setFileName(fileName);
     });
-  }, [db[nickname]["country"], country]);
+  }, [db?.[nickname]["country"], country]);
 
   useEffect(() => {
     window.addEventListener("storage", () => {

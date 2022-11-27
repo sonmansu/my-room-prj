@@ -9,18 +9,24 @@ import ImageMap from "image-map";
 import CountryModal from "../components/CountryModal";
 
 export default function RoomPage() {
-  const [nickname, setNickname] = useState(localStorage.getItem("nickname"));
+  const [nickname, setNickname] = useState(
+    // localStorage.getItem("nickname")
+    ""
+  );
   const navigate = useNavigate();
   const [isSelectModalOn, setSelectModalOn] = useState(false);
   const [isCountryModalOn, setCountryModalOn] = useState(false);
   const [bedImg, setBedImg] = useState(
-    JSON.parse(localStorage.getItem("db"))[nickname]["bed"]
+    // JSON.parse(localStorage.getItem("db"))[nickname]["bed"]
+    "default"
   );
   const [deskImg, setDeskImg] = useState(
-    JSON.parse(localStorage.getItem("db"))[nickname]["desk"]
+    // JSON.parse(localStorage.getItem("db"))[nickname]["desk"]
+    "default"
   );
   const [wallImg, setWallImg] = useState(
-    JSON.parse(localStorage.getItem("db"))[nickname]["wall"]
+    // JSON.parse(localStorage.getItem("db"))[nickname]["wall"]
+    "default"
   );
   const imgHandlers = {
     bed: setBedImg,
