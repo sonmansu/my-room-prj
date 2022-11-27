@@ -7,7 +7,8 @@ import SelectModalItem from "./SelectModalItem";
 
 const imgObj = {
   bed: ["default", "01", "02"],
-  desk: ["default"],
+  desk: ["default", "01"],
+  wall: ["default", "01", "02"],
 };
 
 export default function SelectModal({

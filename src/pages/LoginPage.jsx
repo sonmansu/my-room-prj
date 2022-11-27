@@ -26,6 +26,7 @@ export default function LoginPage() {
       country: "Seoul",
       bed: "default",
       desk: "default",
+      wall: "default",
     };
     localStorage.setItem("db", JSON.stringify(db));
   };

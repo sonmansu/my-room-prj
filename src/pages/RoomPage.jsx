@@ -19,9 +19,13 @@ export default function RoomPage() {
   const [deskImg, setDeskImg] = useState(
     JSON.parse(localStorage.getItem("db"))[nickname]["desk"]
   );
+  const [wallImg, setWallImg] = useState(
+    JSON.parse(localStorage.getItem("db"))[nickname]["wall"]
+  );
   const imgHandlers = {
     bed: setBedImg,
     desk: setDeskImg,
+    wall: setWallImg,
   };
 
   useEffect(() => {
@@ -73,15 +77,20 @@ export default function RoomPage() {
           usemap="#image-map"
         />
         {/* <div className="roomBgImg" /> */}
-        {/* <div style={{ width: "30px" }}>
-          <Furniture
-            kind="desk"
-            isSelectModalOn={isSelectModalOn}
-            setSelectModalOn={setSelectModalOn}
-            img={deskImg}
-            setImg={setDeskImg}
-          />
-        </div> */}
+        <Furniture
+          kind="wall"
+          isSelectModalOn={isSelectModalOn}
+          setSelectModalOn={setSelectModalOn}
+          img={wallImg}
+          setImg={setWallImg}
+        />
+        <Furniture
+          kind="desk"
+          isSelectModalOn={isSelectModalOn}
+          setSelectModalOn={setSelectModalOn}
+          img={deskImg}
+          setImg={setDeskImg}
+        />
         <Furniture
           kind="bed"
           isSelectModalOn={isSelectModalOn}
@@ -95,7 +104,7 @@ export default function RoomPage() {
             target=""
             alt=""
             title=""
-            coords="60,533,62,444,75,436,93,444,165,438,165,426,176,422,191,430,189,473,341,545,345,524,359,516,373,526,376,570,363,583,265,634"
+            coords="262,337,265,437,475,536,590,471,592,414,386,314"
             shape="poly"
           />
           <area
@@ -103,7 +112,23 @@ export default function RoomPage() {
             target=""
             alt=""
             title=""
-            coords="123,217,126,413,317,320,318,126"
+            coords="129,222,126,403,316,319,313,124"
+            shape="poly"
+          />
+          <area
+            onClick={(e) => onClickItem(e, "desk")}
+            target=""
+            alt=""
+            title=""
+            coords="55,447,60,542,211,610,272,576,275,475,131,413"
+            shape="poly"
+          />
+          <area
+            onClick={(e) => onClickItem(e, "wall")}
+            target=""
+            alt=""
+            title=""
+            coords="415,120,414,356,704,499,704,252,619,211"
             shape="poly"
           />
         </map>
