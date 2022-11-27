@@ -4,7 +4,7 @@ body {
   margin: 0;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
+    "Helvetica Neue", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #0f1320 !important;
@@ -16,14 +16,14 @@ code {
 }
 
 html {
-  font-size: 62.5%; /* 100% = 16px | 62.5% = 10px = 1rem */
+  font-size: 62.5% !important; /* 100% = 16px | 62.5% = 10px = 1rem */
 }
 
 button {
-    /* -webkit-appearance: none;
+  /* -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none; */
-    border: none;
+  border: none;
 }
 
 select {
