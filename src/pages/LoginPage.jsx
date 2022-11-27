@@ -18,6 +18,16 @@ export default function LoginPage() {
     localStorage.setItem("nickname", nickname);
     localStorage.setItem("pw", pw);
     navigate("/");
+    let db = JSON.parse(localStorage.getItem("db"));
+    if (!db) db = {};
+    console.log("db", db);
+    db[nickname] = {
+      nickname: nickname,
+      country: "Korea",
+      bed: "default",
+      desk: "default",
+    };
+    localStorage.setItem("db", JSON.stringify(db));
   };
 
   return (

@@ -5,34 +5,51 @@ import ModalDialog from "react-bootstrap/ModalDialog";
 import "../styles/SelectModal.scss";
 import SelectModalItem from "./SelectModalItem";
 
-const itemObj = {
-    bed: ["bed_default", "bed_01", "bed_02", "bed_02", "bed_02"],
+const imgObj = {
+  bed: ["default", "01", "02"],
+  desk: ["default"],
 };
 
 export default function SelectModal({
-    item,
-    setSelectModalOn,
-    curBedImg,
-    setBedImg,
+  isSelectModalOn,
+  setSelectModalOn,
+  setImg,
 }) {
-    const fileNames = itemObj[item];
-    let saveRef = useRef(false);
+  //   const fileNames = itemObj[item];
+  const fileNames = imgObj[isSelectModalOn];
+  console.log("fileNames", fileNames);
+  let saveRef = useRef(false);
+  const [selectedImg, setSelectedImg] = useState("");
 
-    const onClickItem = (e) => {
-        setBedImg(e.target.value);
+  const onClickItem = (e) => {
+    setImg(e.target.value);
+    setSelectedImg(e.target.value);
+  };
+
+  const onConfirm = () => {
+    saveRef.current = true;
+    console.log("onConfirm: saveRef:", saveRef);
+    setSelectModalOn(false);
+
+    const nickname = localStorage.getItem("nickname");
+    const db = JSON.parse(localStorage.getItem("db"));
+    db[nickname][isSelectModalOn] = selectedImg;
+    console.log("db[nickname][item] :>> ", db[nickname][isSelectModalOn]);
+    console.log("selectedImg", selectedImg);
+    localStorage.setItem("db", JSON.stringify(db));
+  };
+
+  useEffect(() => {
+    return () => {
+      // 저장안했으면 원래 이미지로 복구
+      if (!saveRef.current) {
+        const nickname = localStorage.getItem("nickname");
+        const db = JSON.parse(localStorage.getItem("db"));
+        console.log("db[nickname][item] :>> ", db[nickname][isSelectModalOn]);
+        setImg(db[nickname][isSelectModalOn]);
+      }
     };
-
-    const onConfirm = () => {
-        saveRef.current = true;
-        console.log("onConfirm: saveRef:", saveRef);
-        setSelectModalOn(false);
-    };
-
-    useEffect(() => {
-        return () => {
-            if (!saveRef.current) setBedImg(curBedImg);
-        };
-    }, [saveRef]);
+  }, [saveRef]);
 
   return (
     <div id="modalWrap" className="modalWrap">
@@ -60,12 +77,11 @@ export default function SelectModal({
               <label key={idx}>
                 <input
                   type="radio"
-                  name={item}
                   value={fileName}
                   onClick={(e) => onClickItem(e)}
                 />
                 <div className="modalItem">
-                  <SelectModalItem item={fileName + "_select"} />
+                  <SelectModalItem kind={isSelectModalOn} item={fileName} />
                 </div>
               </label>
             ))}
