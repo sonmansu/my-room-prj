@@ -10,7 +10,12 @@ export default function RoomPage() {
   const navigate = useNavigate();
   const [isSelectModalOn, setSelectModalOn] = useState(false);
   const [nickname, setNickname] = useState("");
-  const [img, setImg] = useState("default");
+  const [bedImg, setBedImg] = useState("default");
+  const [deskImg, setDeskImg] = useState("default");
+  const imgHandlers = {
+    bed: setBedImg,
+    desk: setDeskImg,
+  };
 
   useEffect(() => {
     if (!localStorage.getItem("nickname")) {
@@ -29,24 +34,28 @@ export default function RoomPage() {
       <div className="imgWrap">
         <div className="roomBgImg" />
 
-        {/* <Furniture
-          kind="desk"
-          isSelectModalOn={isSelectModalOn}
-          setSelectModalOn={setSelectModalOn}
-        /> */}
+        {/* <div style={{ width: "30px" }}>
+          <Furniture
+            kind="desk"
+            isSelectModalOn={isSelectModalOn}
+            setSelectModalOn={setSelectModalOn}
+            img={deskImg}
+            setImg={setDeskImg}
+          />
+        </div> */}
         <Furniture
           kind="bed"
           isSelectModalOn={isSelectModalOn}
           setSelectModalOn={setSelectModalOn}
-          img={img}
-          setImg={setImg}
+          img={bedImg}
+          setImg={setBedImg}
         />
       </div>
       {isSelectModalOn && (
         <SelectModal
           isSelectModalOn={isSelectModalOn}
           setSelectModalOn={setSelectModalOn}
-          setImg={setImg}
+          imgHandlers={imgHandlers}
         />
       )}
     </div>

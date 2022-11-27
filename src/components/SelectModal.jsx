@@ -13,8 +13,9 @@ const imgObj = {
 export default function SelectModal({
   isSelectModalOn,
   setSelectModalOn,
-  setImg,
+  imgHandlers,
 }) {
+  const imgHandler = imgHandlers[isSelectModalOn];
   //   const fileNames = itemObj[item];
   const fileNames = imgObj[isSelectModalOn];
   console.log("fileNames", fileNames);
@@ -22,20 +23,28 @@ export default function SelectModal({
   const [selectedImg, setSelectedImg] = useState("");
 
   const onClickItem = (e) => {
-    setImg(e.target.value);
+    imgHandler(e.target.value);
     setSelectedImg(e.target.value);
+
+    // db값 변경
+    // const nickname = localStorage.getItem("nickname");
+    // const db = JSON.parse(localStorage.getItem("db"));
+    // db[nickname][isSelectModalOn] = e.target.value;
+    // console.log("db[nickname][item] :>> ", db[nickname][isSelectModalOn]);
+    // console.log("selectedImg", selectedImg);
+    // localStorage.setItem("db", JSON.stringify(db));
   };
 
   const onConfirm = () => {
     saveRef.current = true;
-    console.log("onConfirm: saveRef:", saveRef);
+    // console.log("onConfirm: saveRef:", saveRef);
     setSelectModalOn(false);
 
     const nickname = localStorage.getItem("nickname");
     const db = JSON.parse(localStorage.getItem("db"));
     db[nickname][isSelectModalOn] = selectedImg;
-    console.log("db[nickname][item] :>> ", db[nickname][isSelectModalOn]);
-    console.log("selectedImg", selectedImg);
+    // console.log("db[nickname][item] :>> ", db[nickname][isSelectModalOn]);
+    // console.log("selectedImg", selectedImg);
     localStorage.setItem("db", JSON.stringify(db));
   };
 
@@ -46,7 +55,8 @@ export default function SelectModal({
         const nickname = localStorage.getItem("nickname");
         const db = JSON.parse(localStorage.getItem("db"));
         console.log("db[nickname][item] :>> ", db[nickname][isSelectModalOn]);
-        setImg(db[nickname][isSelectModalOn]);
+        // setImg(db[nickname][isSelectModalOn]);
+        imgHandler(db[nickname][isSelectModalOn]);
       }
     };
   }, [saveRef]);
