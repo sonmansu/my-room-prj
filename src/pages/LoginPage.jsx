@@ -23,7 +23,7 @@ export default function LoginPage() {
     console.log("db", db);
     db[nickname] = {
       nickname: nickname,
-      country: "Korea",
+      country: "Seoul",
       bed: "default",
       desk: "default",
     };
