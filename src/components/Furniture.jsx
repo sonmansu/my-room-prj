@@ -1,23 +1,27 @@
 import { useEffect, useRef, useState } from "react";
 import ImageMap from "image-map";
+import "../styles/Furniture.scss";
 
 export default function Furniture({
   kind,
   isSelectModalOn,
   setSelectModalOn,
-  setImg,
   img,
+  setImg,
 }) {
+  const nickname = localStorage.getItem("nickname");
+
+  console.log("furniture : ");
   useEffect(() => {
     ImageMap("img[usemap]");
   }, []);
 
   useEffect(() => {
-    const nickname = localStorage.getItem("nickname");
-    const db = JSON.parse(localStorage.getItem("db"));
-    // console.log("db :>> ", db);
+    console.log("useEffect!");
+    // console.log("db :>> ", db);(
     // console.log("db[nickname][kind]", db[nickname][kind]);
-    setImg(db[nickname][kind]);
+    if (!localStorage.getItem("db"))
+      setImg(JSON.parse(localStorage.getItem("db"))[nickname][kind]);
   }, [localStorage.getItem("db")]);
 
   const onClickItem = (e) => {
@@ -31,10 +35,13 @@ export default function Furniture({
     }
   };
   return (
-    <div>
+    <div className="furnitureWrap">
       {/* <div className="bedDefaultImg" useMap="#image-map" /> */}
       <img
         src={require(`../assets/img/furnitures/${kind}/${img}.png`)}
+        // src={require(`../assets/img/furnitures/${kind}/${
+        //   JSON.parse(localStorage.getItem("db"))[nickname][kind]
+        // }.png`)}
         usemap="#image-map"
         alt="가구"
       />
