@@ -1,17 +1,18 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 import SelectModal from "../components/SelectModal";
-import CountryDropdown from "../components/CountryDropdown";
 import "../styles/RoomPage.scss";
 import { useNavigate } from "react-router-dom";
 import Furniture from "../components/Furniture";
 import Window from "../components/Window";
 import ImageMap from "image-map";
+import CountryModal from "../components/CountryModal";
 
 export default function RoomPage() {
   const [nickname, setNickname] = useState(localStorage.getItem("nickname"));
   const navigate = useNavigate();
   const [isSelectModalOn, setSelectModalOn] = useState(false);
+  const [isCountryModalOn, setCountryModalOn] = useState(false);
   const [bedImg, setBedImg] = useState(
     JSON.parse(localStorage.getItem("db"))[nickname]["bed"]
   );
@@ -47,11 +48,15 @@ export default function RoomPage() {
   const onClickWindow = (e, kind) => {
     console.log("click window");
     e.preventDefault();
+
+    if (isCountryModalOn) setCountryModalOn(false);
+    else {
+      setCountryModalOn(kind);
+    }
   };
   return (
     <div className="RoomPageWrap">
       <div style={{ marginLeft: "1rem" }}>
-        <CountryDropdown />
         <p className="title">{nickname} 님의 방</p>
       </div>
       <div className="imgWrap">
@@ -109,6 +114,9 @@ export default function RoomPage() {
           setSelectModalOn={setSelectModalOn}
           imgHandlers={imgHandlers}
         />
+      )}
+      {isCountryModalOn && (
+        <CountryModal setCountryModalOn={setCountryModalOn} />
       )}
     </div>
   );
