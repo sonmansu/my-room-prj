@@ -76,6 +76,7 @@ export default function SelectModal({
             {fileNames.map((fileName, idx) => (
               <label key={idx}>
                 <input
+                  name={isSelectModalOn}
                   type="radio"
                   value={fileName}
                   onClick={(e) => onClickItem(e)}
