@@ -36,8 +36,17 @@ export default function RoomPage() {
         <p className="title">{nickname} 님의 방</p>
       </div>
       <div className="imgWrap">
-        <div className="roomBgImg" />
-
+        <img
+          className="img"
+          src={require("../assets/img/window/day.png")}
+          alt="창문"
+        />
+        <img
+          className="img"
+          src={require("../assets/img/room_bg.png")}
+          alt="방"
+        />
+        {/* <div className="roomBgImg" /> */}
         {/* <div style={{ width: "30px" }}>
           <Furniture
             kind="desk"
