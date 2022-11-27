@@ -7,11 +7,15 @@ import { useNavigate } from "react-router-dom";
 import Furniture from "../components/Furniture";
 
 export default function RoomPage() {
+  const [nickname, setNickname] = useState(localStorage.getItem("nickname"));
   const navigate = useNavigate();
   const [isSelectModalOn, setSelectModalOn] = useState(false);
-  const [nickname, setNickname] = useState("");
-  const [bedImg, setBedImg] = useState("default");
-  const [deskImg, setDeskImg] = useState("default");
+  const [bedImg, setBedImg] = useState(
+    JSON.parse(localStorage.getItem("db"))[nickname]["bed"]
+  );
+  const [deskImg, setDeskImg] = useState(
+    JSON.parse(localStorage.getItem("db"))[nickname]["desk"]
+  );
   const imgHandlers = {
     bed: setBedImg,
     desk: setDeskImg,
