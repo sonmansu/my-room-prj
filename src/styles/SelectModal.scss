@@ -9,6 +9,11 @@
   //   bottom: 0;
   position: relative;
 }
+
+#myModalId .modal-content {
+  //   border-top-right-radius: 10px;
+  //   border-radius: 20px;
+}
 .backdrop {
   position: relative;
   height: 100vh;
@@ -19,8 +24,17 @@
   top: calc(100vh - 20rem - 2rem);
   //   bottom: 0px; //작동안됨
 }
-.myModalContent {
-  height: 20rem;
+#myModalId {
+  .myModalContent {
+    height: 20rem;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #222631;
+    //   border-radius: 10px;
+  }
+  .modal-header {
+    color: white;
+  }
 }
 #myModalId .MyModalBackdrop {
   //   background-color: rgba(0, 0, 0, 0.2);
@@ -30,7 +44,7 @@
 .confirmBtn {
   width: 20px;
   height: 20px;
-  background-color: green;
+  //   background-color: green;
 }
 
 .modalItemsWrap {
