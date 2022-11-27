@@ -3,14 +3,16 @@
 $default-size: 360px;
 
 .RoomPageWrap {
-  // background-color: lightblue;
+  background-color: lightblue !important;
   width: 100vw;
   height: 100vh;
+  max-width: 45rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   // align-items: center;
   padding-bottom: 20rem;
+  margin: 0 auto;
 }
 
 .title {
