@@ -28,9 +28,9 @@
 }
 
 .confirmBtn {
-    width: 20px;
-    height: 20px;
-    background-color: green;
+  width: 20px;
+  height: 20px;
+  background-color: green;
 }
 
 .modalItemsWrap {
@@ -48,25 +48,27 @@
 // }
 
 /* HIDE RADIO */
-[type="radio"] {
+.modalItemsWrap {
+  [type="radio"] {
     position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
-}
+  }
 
-.modalItem {
+  .modalItem {
     border: 2px solid lightblue;
     border-radius: 0.5rem;
-}
+  }
 
-/* IMAGE STYLES */
-[type="radio"] + .modalItem {
+  /* IMAGE STYLES */
+  [type="radio"] + .modalItem {
     cursor: pointer;
-}
+  }
 
-/* CHECKED STYLES */
-[type="radio"]:checked + .modalItem {
+  /* CHECKED STYLES */
+  [type="radio"]:checked + .modalItem {
     border: 2px solid red;
     border-radius: 0.5rem;
+  }
 }

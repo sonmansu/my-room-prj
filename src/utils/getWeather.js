@@ -190,18 +190,20 @@ export function fetchWeater(selectedCountry) {
     const countryObj = countries.find(
         (item) => item["city_ascii"] === selectedCountry
     );
+    // console.log('countryObj :>> ', countryObj);
 
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${countryObj.lat}&lon=${countryObj.lng}&appid=${process.env.REACT_APP_API_KEY}`;
+    // console.log('url :>> ', url);
 
     return fetch(url)
         .then(response => response.json())
         .then(parsed => {
-            console.log(parsed)
-            console.log(parsed.weather[0].main);
+            // console.log(parsed)
+            // console.log(parsed.weather[0].main);
 
             // 국가 현재 시간 출력
             const timezone = parsed.timezone;
-            console.log('timezone :>> ', timezone);
+            // console.log('timezone :>> ', timezone);
 
             const localTime = new Date().getTime()
             const localOffset = new Date().getTimezoneOffset() * 60000
