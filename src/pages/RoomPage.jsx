@@ -115,6 +115,7 @@ export default function RoomPage() {
                         title=""
                         coords="262,337,265,437,475,536,590,471,592,414,386,314"
                         shape="poly"
+                        style={{ cursor: "pointer" }}
                     />
                     <area
                         onClick={(e) => onClickWindow(e, "window")}
@@ -123,6 +124,7 @@ export default function RoomPage() {
                         title=""
                         coords="129,222,126,403,316,319,313,124"
                         shape="poly"
+                        style={{ cursor: "pointer" }}
                     />
                     <area
                         onClick={(e) => onClickItem(e, "desk")}
@@ -131,6 +133,7 @@ export default function RoomPage() {
                         title=""
                         coords="55,447,60,542,211,610,272,576,275,475,131,413"
                         shape="poly"
+                        style={{ cursor: "pointer" }}
                     />
                     <area
                         onClick={(e) => onClickItem(e, "wall")}
@@ -139,6 +142,7 @@ export default function RoomPage() {
                         title=""
                         coords="415,120,414,356,704,499,704,252,619,211"
                         shape="poly"
+                        style={{ cursor: "pointer" }}
                     />
                 </map>
             </div>
